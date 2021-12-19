@@ -1,0 +1,95 @@
+[System]
+Name='fuzzy_theta'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=4
+NumRules=25
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Error'
+Range=[-2 2]
+NumMFs=5
+MF1='neg_close':'gaussmf',[0.2 -0.4]
+MF2='zero':'gaussmf',[0.2 0]
+MF3='pos_close':'gaussmf',[0.2 0.4]
+MF4='neg_far':'zmf',[-0.8 -0.4]
+MF5='pos_far':'smf',[0.4 0.8]
+
+[Input2]
+Name='Angle'
+Range=[-0.523598775598299 0.523598775598299]
+NumMFs=5
+MF1='neg_low':'gaussmf',[0.04 -0.075]
+MF2='zero':'gaussmf',[0.03 0]
+MF3='pos_low':'gaussmf',[0.04 0.0742259259259259]
+MF4='neg_high':'zmf',[-0.15 -0.075]
+MF5='pos_high':'smf',[0.075 0.15]
+
+[Output1]
+Name='u1'
+Range=[-5 5]
+NumMFs=5
+MF1='Significant_Decrease':'gaussmf',[0.8 -3.5]
+MF2='Zero':'gaussmf',[0.8 0]
+MF3='Significant_Increase':'gaussmf',[0.8 3.5]
+MF4='Decrease':'gaussmf',[0.8 -2]
+MF5='Increase':'gaussmf',[0.8 2]
+
+[Output2]
+Name='u2'
+Range=[-3 3]
+NumMFs=3
+MF1='zero':'gaussmf',[0.06 0]
+MF2='Decrease':'gaussmf',[0.4 -0.5]
+MF3='Increase':'gaussmf',[0.4 0.5]
+
+[Output3]
+Name='u3'
+Range=[-5 5]
+NumMFs=5
+MF1='Significant_Decrease':'gaussmf',[1 -3.124]
+MF2='Zero':'gaussmf',[1 0]
+MF3='Significant_Increase':'gaussmf',[1 3.124]
+MF4='Decrease':'gaussmf',[1 -1.638]
+MF5='Increase':'gaussmf',[1 1.638]
+
+[Output4]
+Name='u4'
+Range=[-3 3]
+NumMFs=3
+MF1='Zero':'gaussmf',[0.06 -0]
+MF2='Decrease':'gaussmf',[0.4 -0.5]
+MF3='Increase':'gaussmf',[0.4 0.5]
+
+[Rules]
+1 1, 2 1 2 1 (1) : 1
+1 2, 5 1 4 1 (1) : 1
+1 3, 5 2 4 2 (1) : 1
+1 5, 1 2 3 2 (1) : 1
+1 4, 4 1 5 1 (1) : 1
+2 1, 4 1 5 1 (1) : 1
+2 2, 2 1 2 1 (1) : 1
+2 3, 5 1 4 1 (1) : 1
+2 4, 1 1 3 1 (1) : 1
+2 5, 3 1 1 1 (1) : 1
+3 1, 4 2 5 2 (1) : 1
+3 2, 4 1 5 1 (1) : 1
+3 3, 2 1 2 1 (1) : 1
+3 4, 1 2 3 2 (1) : 1
+3 5, 5 1 4 1 (1) : 1
+4 1, 5 1 4 1 (1) : 1
+4 2, 3 1 1 1 (1) : 1
+4 3, 3 2 1 2 (1) : 1
+4 4, 4 1 5 1 (1) : 1
+4 5, 3 2 1 2 (1) : 1
+5 1, 1 2 3 2 (1) : 1
+5 2, 4 1 5 1 (1) : 1
+5 3, 4 1 5 1 (1) : 1
+5 4, 1 2 3 2 (1) : 1
+5 5, 5 1 4 1 (1) : 1

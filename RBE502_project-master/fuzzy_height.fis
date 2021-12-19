@@ -1,0 +1,69 @@
+[System]
+Name='fuzzy_height'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=25
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='error'
+Range=[-2 2]
+NumMFs=5
+MF1='neg_close':'gaussmf',[0.15 -0.1]
+MF2='zero':'gaussmf',[0.15 0]
+MF3='pos_close':'gaussmf',[0.15 0.1]
+MF4='neg_far':'zmf',[-0.4 -0.1]
+MF5='pos_far':'smf',[0.1 0.4]
+
+[Input2]
+Name='velocity'
+Range=[-2 2]
+NumMFs=5
+MF1='neg_fast':'zmf',[-0.7 -0.3]
+MF2='neg_slow':'gaussmf',[0.3 -0.4]
+MF3='zero':'gaussmf',[0.3 0]
+MF4='pos_slow':'gaussmf',[0.3 0.4]
+MF5='pos_fast':'smf',[0.3 0.7]
+
+[Output1]
+Name='thrust'
+Range=[0 3]
+NumMFs=5
+MF1='neg_large':'gaussmf',[0.25 0.22625]
+MF2='neg_small':'gaussmf',[0.25 0.72625]
+MF3='zero':'gaussmf',[0.25 1.22625]
+MF4='pos_small':'gaussmf',[0.25 1.726]
+MF5='pos_large':'gaussmf',[0.25 2.226]
+
+[Rules]
+1 1, 5 (1) : 1
+1 2, 3 (1) : 1
+1 3, 2 (1) : 1
+1 4, 2 (1) : 1
+1 5, 1 (1) : 1
+2 1, 5 (1) : 1
+2 2, 4 (1) : 1
+2 3, 3 (1) : 1
+2 4, 2 (1) : 1
+2 5, 1 (1) : 1
+3 1, 5 (1) : 1
+3 2, 4 (1) : 1
+3 3, 4 (1) : 1
+3 4, 4 (1) : 1
+3 5, 1 (1) : 1
+4 1, 3 (1) : 1
+4 2, 2 (1) : 1
+4 3, 1 (1) : 1
+4 4, 1 (1) : 1
+4 5, 1 (1) : 1
+5 1, 5 (1) : 1
+5 2, 5 (1) : 1
+5 3, 5 (1) : 1
+5 4, 4 (1) : 1
+5 5, 3 (1) : 1
